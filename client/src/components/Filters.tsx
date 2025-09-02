@@ -70,7 +70,7 @@ export default function Filters({ filters, onFiltersChange, actions }: FiltersPr
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4" data-testid="filters">
       {/* City Filter */}
       <div className="space-y-2">
-        <Label htmlFor="city-search" className="text-xs font-semibold tracking-wider uppercase text-white/80">
+        <Label htmlFor="city-search" className="text-xs font-semibold tracking-wider uppercase text-gray-600">
           City
         </Label>
         <div className="relative">
@@ -80,7 +80,7 @@ export default function Filters({ filters, onFiltersChange, actions }: FiltersPr
             placeholder="Search cities..."
             value={citySearch}
             onChange={(e) => setCitySearch(e.target.value)}
-            className="pl-9 bg-white/10 border-white/20 text-white placeholder:text-white/60"
+            className="pl-9"
             data-testid="input-city-search"
           />
           <Search className="absolute left-3 top-2.5 w-4 h-4 text-muted-foreground" />
@@ -113,7 +113,7 @@ export default function Filters({ filters, onFiltersChange, actions }: FiltersPr
 
       {/* Category Filter */}
       <div className="space-y-3">
-        <Label className="text-xs font-semibold tracking-wider uppercase text-white/80">Category</Label>
+        <Label className="text-xs font-semibold tracking-wider uppercase text-gray-600">Category</Label>
         <div className="flex flex-wrap gap-2">
           {categories.map((category) => {
             const isSelected = filters.categories?.includes(category);
@@ -135,7 +135,7 @@ export default function Filters({ filters, onFiltersChange, actions }: FiltersPr
 
       {/* Sector Filter */}
       <div className="space-y-3">
-        <Label className="text-xs font-semibold tracking-wider uppercase text-white/80">Sector</Label>
+        <Label className="text-xs font-semibold tracking-wider uppercase text-gray-600">Sector</Label>
         <div className="space-y-2">
           {sectors.map((sector) => (
             <div key={sector} className="flex items-center space-x-2">
@@ -155,7 +155,7 @@ export default function Filters({ filters, onFiltersChange, actions }: FiltersPr
 
       {/* Cost Filter */}
       <div className="space-y-3">
-        <Label className="text-xs font-semibold tracking-wider uppercase text-white/80">Cost</Label>
+        <Label className="text-xs font-semibold tracking-wider uppercase text-gray-600">Cost</Label>
         <div className="space-y-2">
           {costTiers.map((cost) => (
             <div key={cost} className="flex items-center space-x-2">
@@ -175,7 +175,7 @@ export default function Filters({ filters, onFiltersChange, actions }: FiltersPr
 
       {/* Status Filter */}
       <div className="space-y-3">
-        <Label className="text-xs font-semibold tracking-wider uppercase text-white/80">Status</Label>
+        <Label className="text-xs font-semibold tracking-wider uppercase text-gray-600">Status</Label>
         <div className="space-y-2">
           {statuses.map((status) => (
             <div key={status} className="flex items-center space-x-2">

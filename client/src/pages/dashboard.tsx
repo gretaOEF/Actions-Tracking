@@ -175,27 +175,27 @@ export default function Dashboard() {
           </div>
         )}
 
-      {/* Filters & Data Section - Blue Background */}
-      <section className="blue-section py-16" id="data">
+      {/* Filters & Data Section - Clean White Background */}
+      <section className="neutral-section py-16 bg-gray-50" id="data">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="section-header text-white/80">DATA EXPLORATION</p>
-            <h2 className="institutional-title text-white mb-6">
+            <p className="section-header">DATA EXPLORATION</p>
+            <h2 className="institutional-title text-gray-900 mb-6">
               Explore Climate Actions
             </h2>
-            <p className="policy-text text-white/90 max-w-3xl mx-auto">
+            <p className="policy-text max-w-3xl mx-auto">
               Filter and analyze high-impact climate actions across cities, sectors, and implementation stages. 
               Each action represents a critical intervention for urban climate resilience.
             </p>
           </div>
           
-          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 space-y-8">
+          <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-200 space-y-8">
             {/* Filters */}
             <div className="space-y-6">
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-white mb-2">Filter Actions</h3>
-                  <p className="text-sm text-white/80" data-testid="text-filtered-count">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Filter Actions</h3>
+                  <p className="text-sm text-gray-600" data-testid="text-filtered-count">
                     Showing {filteredActions.length} of {actions.length} actions
                   </p>
                 </div>
@@ -206,14 +206,14 @@ export default function Dashboard() {
                       placeholder="Search actions..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-64 pl-9 bg-white/10 border-white/20 text-white placeholder:text-white/60"
+                      className="w-64 pl-9"
                       data-testid="input-search"
                     />
-                    <svg className="absolute left-3 top-2.5 w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="absolute left-3 top-2.5 w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
                   </div>
-                  <Button variant="outline" size="sm" onClick={clearFilters} className="border-white/20 text-white hover:bg-white/10" data-testid="button-clear-filters">
+                  <Button variant="outline" size="sm" onClick={clearFilters} data-testid="button-clear-filters">
                     Clear All
                   </Button>
                 </div>
@@ -222,7 +222,8 @@ export default function Dashboard() {
               <div className="lg:hidden">
                 <Button 
                   onClick={() => setIsMobileFiltersOpen(true)}
-                  className="w-full bg-white/10 hover:bg-white/20 text-white border-white/20"
+                  className="w-full"
+                  variant="outline"
                   data-testid="button-show-filters"
                 >
                   <Filter className="w-4 h-4 mr-2" />
