@@ -66,14 +66,14 @@ export default function KpiCards({ kpis, isLoading }: KpiCardsProps) {
         return (
           <div key={card.title} className="text-center space-y-2">
             <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10">
-              <p className="text-xs font-semibold tracking-wider uppercase text-white/70 mb-2">
+              <p className="text-xs font-semibold tracking-wider uppercase text-gray-600 mb-2">
                 {card.title}
               </p>
-              <p className="text-4xl lg:text-5xl font-bold text-white mb-1" data-testid={`kpi-${card.title.toLowerCase().replace(' ', '-')}`}>
+              <p className="text-4xl lg:text-5xl font-bold text-gray-900 mb-1" data-testid={`kpi-${card.title.toLowerCase().replace(' ', '-')}`}>
                 {card.value}
               </p>
               {card.subtitle && (
-                <p className="text-xs text-white/80">{card.subtitle}</p>
+                <p className="text-xs text-gray-600">{card.subtitle}</p>
               )}
             </div>
           </div>
