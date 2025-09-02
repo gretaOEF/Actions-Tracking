@@ -84,9 +84,9 @@ async function loadActionsFromGoogleSheets() {
       
       // Map columns to action properties
       headers.forEach((header: string, index: number) => {
-        const value = row[index] || '';
+        const value = (row[index] || '').toString().trim();
         
-        switch (header.toLowerCase()) {
+        switch (header.toLowerCase().replace(/\s+/g, '')) {
           case 'id':
             action.id = value;
             break;
@@ -105,14 +105,22 @@ async function loadActionsFromGoogleSheets() {
           case 'sector':
             action.sector = value;
             break;
-          case 'costtier':
+          case 'cost':
             action.costTier = value;
             break;
           case 'investmentusd':
             action.investmentUSD = value ? parseInt(value) : undefined;
             break;
           case 'status':
-            action.status = value;
+            // Normalize status values
+            const statusMap: { [key: string]: string } = {
+              'ready to start': 'Ready to start',
+              'in progress': 'In progress', 
+              'not started': 'Not started',
+              'completed': 'Completed',
+              'on hold': 'On hold'
+            };
+            action.status = statusMap[value.toLowerCase()] || value;
             break;
           case 'reductionpotentialpct':
             action.reductionPotentialPct = value || undefined;
@@ -135,7 +143,17 @@ async function loadActionsFromGoogleSheets() {
         }
       });
       
-      if (action.id) {
+      // Generate ID if not present
+      if (!action.id && action.city && action.actionName) {
+        action.id = `${action.city.substring(0, 3).toUpperCase()}-${String(i).padStart(3, '0')}`;
+      }
+      
+      // Set default values for missing fields
+      if (!action.country) action.country = 'Unknown';
+      if (!action.description) action.description = `${action.actionName} in ${action.city}`;
+      if (!action.lastUpdated) action.lastUpdated = new Date().toISOString().split('T')[0];
+      
+      if (action.id && action.city && action.actionName) {
         actions.push(action);
       }
     }
