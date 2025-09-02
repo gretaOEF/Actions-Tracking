@@ -47,15 +47,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
 async function loadActionsFromGoogleSheets() {
   // Check if Google Sheets credentials are available
-  if (!process.env.GOOGLE_SHEETS_API_KEY || !process.env.GOOGLE_SHEETS_ID) {
+  const apiKey = process.env.GOOGLE_SHEETS_API_KEY;
+  const sheetId = process.env.GOOGLE_SHEETS_ID;
+  
+  console.log('Checking environment variables:');
+  console.log('API Key exists:', !!apiKey);
+  console.log('Sheet ID exists:', !!sheetId);
+  console.log('Sheet ID value:', sheetId);
+  
+  if (!apiKey || !sheetId) {
     throw new Error('Google Sheets credentials not configured');
   }
 
-  const sheets = google.sheets({ version: 'v4', auth: process.env.GOOGLE_SHEETS_API_KEY });
+  const sheets = google.sheets({ version: 'v4', auth: apiKey });
   
   try {
+    console.log('Making request to Google Sheets with ID:', sheetId);
     const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: process.env.GOOGLE_SHEETS_ID,
+      spreadsheetId: sheetId,
       range: 'Actions!A:O', // Adjust range based on your sheet structure
     });
 
