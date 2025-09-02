@@ -2,7 +2,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sh
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
-import StatusPill from "./StatusPill";
+import StatusPill from "@/components/StatusPill";
 import { ExternalLink, Edit } from "lucide-react";
 import { format } from "date-fns";
 import { updateActionStatus } from "@/lib/data";

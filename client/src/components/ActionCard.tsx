@@ -1,6 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import StatusPill from "./StatusPill";
+import StatusPill from "@/components/StatusPill";
 import type { Action } from "@shared/schema";
 
 interface ActionCardProps {
