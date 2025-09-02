@@ -1,0 +1,214 @@
+Quiero que construyas un frontend de una landing en React + Vite + Tailwind (o Next.js con app/) para visualizar 100 “High-Impact Actions” de 50 ciudades (2 por ciudad). Debe ser un proyecto limpio, product-ready, con tipografía sistema, diseño minimalista y accesible.
+
+Objetivo de negocio
+
+El usuario (un funcionario o consultor) debe entender en segundos qué acciones priorizamos y explorarlas por ciudad, categoría (Mitigation/Adaptation), sector (AFOLU, Stationary Energy, Transportation, Waste, IPPU), costo/inversión (Low/Medium/High o valor numérico) y estado (Not started, Ready to start, In progress, Completed, On hold).
+
+Soporta “basic tracking” del estado: por ahora es estático (desde una tabla/JSON), pero deja un hook para integrar un formulario/encuesta en el futuro.
+
+Alcance funcional (MVP elegante)
+
+Hero + KPI cards arriba:
+
+Total cities (50), total actions (100).
+
+Conteos por categoría (Mitigation vs Adaptation).
+
+Conteos por sector.
+
+Panel de filtros (persistentes por URL querystring):
+
+City (autocomplete).
+
+Category (chips toggle).
+
+Sector (multi-select).
+
+Cost/Investment (rangos y/o Low/Med/High).
+
+Status (multi-select).
+
+Botón “Clear”.
+
+Tabla principal + cards con paginación (20 por página) y buscador por texto libre:
+
+Columnas: City, ActionName, Category, Sector, Cost/Investment, Status, ReductionPotential (opcional), ImplementationTime (opcional), Owner/Contact (opcional).
+
+Vista “cards” alterna (grid) para móvil.
+
+Charts (Recharts):
+
+Bar chart: acciones por Sector.
+
+Donut: Mitigation vs Adaptation.
+
+Stacked bar (opcional): acciones por Status.
+
+Detalle de acción (drawer o ruta /action/:id):
+
+Título, ciudad, sector, categoría, costo/ inversión, estado, descripción, reducción potencial (% rango), tiempo de implementación (años), links externos.
+
+Status tracker básico:
+
+Las acciones tienen status. Muestra pill con color + timeline simple si existe status_history (opcional).
+
+Preparado para actualizar datos:
+
+Origen de datos por ahora: /public/actions.json (estático).
+
+Deja función loadActions() desacoplada para, en el futuro, leer de Google Sheets/Forms.
+
+Incluye script npm run build:data que toma un CSV en /data/actions.csv y genera public/actions.json.
+
+Estructura de datos (usar exactamente este esquema)
+
+Archivo: public/actions.json con un array de objetos:
+
+[
+  {
+    "id": "BA-001",
+    "city": "Buenos Aires",
+    "country": "Argentina",
+    "actionName": "Implement Agroforestry Systems",
+    "category": "Mitigation",          // "Mitigation" | "Adaptation"
+    "sector": "AFOLU",                 // "AFOLU" | "Stationary Energy" | "Transportation" | "Waste" | "IPPU"
+    "costTier": "Medium",              // "Low" | "Medium" | "High"  (si hay monto, ver 'investmentUSD')
+    "investmentUSD": 1250000,          // opcional; si está, prevalece para ordenar/filtrar por monto
+    "status": "Ready to start",        // "Not started" | "Ready to start" | "In progress" | "Completed" | "On hold"
+    "reductionPotentialPct": "80-100%",// string rango opcional
+    "implementationTimeYears": "5-10 years",
+    "description": "Promote agroforestry by integrating trees into cultivation and pasture to increase biodiversity and carbon sequestration.",
+    "owner": "CityCatalyst Team",
+    "lastUpdated": "2025-08-20",
+    "status_history": [
+      {"date": "2025-06-01", "status": "Not started"},
+      {"date": "2025-08-20", "status": "Ready to start"}
+    ],
+    "tags": ["nature-based", "biodiversity"]
+  }
+]
+
+
+Validaciones:
+
+category y sector deben ser uno de los valores listados.
+
+costTier o investmentUSD (al menos uno).
+
+status debe ser uno de los valores listados.
+
+id único.
+
+Incluye un CSV template en /data/actions.csv con estas columnas, y un script de conversión a JSON (Node: csv-parse).
+
+Diseño y UX (Tailwind + shadcn/ui)
+
+Paleta sobria (fondos claros, acentos azules), cards con rounded-2xl y sombras suaves.
+
+Layout:
+
+Header fijo con logo, título “CityCatalyst — High-Impact Actions”.
+
+Sidebar (o barra superior en móvil) con filtros.
+
+Main: KPIs → charts → tabla/cards.
+
+Accesibilidad: etiquetas aria, contraste AA, focus visible.
+
+Estado de carga y errores (skeletons y toasts).
+
+Persistencia de filtros en URL (ej.: ?city=Recife&sector=AFOLU,Waste&status=In%20progress).
+
+Internacionalización preparada (en/pt/es) con un objeto i18n.ts (claves ya usadas en UI).
+
+Estructura del proyecto
+src/
+  components/
+    KpiCards.tsx
+    Filters.tsx
+    DataTable.tsx
+    ActionCard.tsx
+    ActionDrawer.tsx
+    Charts.tsx
+    StatusPill.tsx
+  lib/
+    data.ts         // loadActions(), types, filtering, sorting, schema validation (zod)
+    i18n.ts
+    utils.ts
+  pages/ (si Next) o rutas con react-router (si Vite)
+public/
+  actions.json
+data/
+  actions.csv
+
+Comportamiento clave
+
+Filtrado y orden en el cliente (dataset pequeño).
+
+Orden default: status (Ready/In progress/Completed/Not started/On hold) → city → actionName.
+
+Búsqueda insensible a mayúsculas por city, actionName, description, tags.
+
+Export: botón “Download filtered CSV/JSON”.
+
+Hook a futuro: expón onStatusUpdate(actionId, newStatus) (no implementa backend), y un endpoint ficticio POST /api/update-status para facilitar una integración posterior.
+
+Semillas de datos (incluye 6 filas de ejemplo)
+
+Crea data/actions.csv con 6 entradas variadas (AFOLU/Transp/Waste/Stationary/IPP U; costos y estados distintos, 2 ciudades de Brasil mínimo). Genera public/actions.json en postinstall o npm run build:data.
+
+Calidad e informes
+
+TypeScript y ESLint + Prettier.
+
+Tests de tipos (zod) para validar actions.json.
+
+Lighthouse mínimo 90/90/90/90.
+
+README con:
+
+cómo actualizar actions.csv,
+
+cómo regenerar actions.json,
+
+cómo desplegar.
+
+Entregables
+
+Repo funcional con instrucciones (README.md).
+
+Demo corriendo en Replit.
+
+actions.json y actions.csv incluidos.
+
+Capturas de pantalla en docs/ (desktop y móvil).
+
+Criterios de aceptación
+
+Puedo filtrar por ciudad, categoría, sector, costo/inversión y estado, y ver el resultado en tabla/cards.
+
+Puedo compartir una vista (URL con filtros).
+
+Veo KPIs y charts correctos para el subconjunto filtrado.
+
+Status pill coherente y, si hay status_history, se ve la mini-timeline en el drawer.
+
+Puedo exportar el subconjunto filtrado a CSV/JSON.
+
+Bonus (si te da el tiempo)
+
+“Compare view”: seleccionar hasta 3 ciudades y ver KPIs lado a lado.
+
+Modo oscuro.
+
+Embed widget (iframe) de la tabla filtrada.
+
+Notas de contenido
+
+Categorías: Mitigation, Adaptation.
+
+Sectores: Stationary Energy, Transportation, Waste, AFOLU, IPPU.
+
+Costos: Low, Medium, High (o investmentUSD numérico).
+
+Estados: Not started, Ready to start, In progress, Completed, On hold.
