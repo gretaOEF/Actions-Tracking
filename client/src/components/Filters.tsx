@@ -1,10 +1,8 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Badge } from "@/components/ui/badge";
-import { Search } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import type { Filters, Action, Category, Sector, CostTier, Status } from "@shared/schema";
 
 interface FiltersProps {
@@ -14,15 +12,11 @@ interface FiltersProps {
 }
 
 export default function Filters({ filters, onFiltersChange, actions }: FiltersProps) {
-  const [citySearch, setCitySearch] = useState("");
 
-  // Get unique cities for autocomplete
-  const cities = useMemo(() => {
-    const uniqueCities = Array.from(new Set(actions.map(a => a.city))).sort();
-    return citySearch 
-      ? uniqueCities.filter(city => city.toLowerCase().includes(citySearch.toLowerCase()))
-      : uniqueCities;
-  }, [actions, citySearch]);
+  // Get unique cities for dropdown
+  const allCities = useMemo(() => {
+    return Array.from(new Set(actions.map(a => a.city))).sort();
+  }, [actions]);
 
   const categories: Category[] = ["Mitigation", "Adaptation"];
   const sectors: Sector[] = ["AFOLU", "Stationary Energy", "Transportation", "Waste", "IPPU"];
@@ -62,53 +56,41 @@ export default function Filters({ filters, onFiltersChange, actions }: FiltersPr
   };
 
   const handleCitySelect = (city: string) => {
-    onFiltersChange({ city });
-    setCitySearch("");
+    if (city === "all") {
+      onFiltersChange({ city: undefined });
+    } else {
+      onFiltersChange({ city });
+    }
   };
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4" data-testid="filters">
       {/* City Filter */}
       <div className="space-y-2">
-        <Label htmlFor="city-search" className="text-xs font-semibold tracking-wider uppercase text-gray-600">
+        <Label className="text-xs font-semibold tracking-wider uppercase text-gray-600">
           City
         </Label>
-        <div className="relative">
-          <Input
-            id="city-search"
-            type="text"
-            placeholder="Search cities..."
-            value={citySearch}
-            onChange={(e) => setCitySearch(e.target.value)}
-            className="pl-9"
-            data-testid="input-city-search"
-          />
-          <Search className="absolute left-3 top-2.5 w-4 h-4 text-muted-foreground" />
-        </div>
-        {filters.city && (
-          <Badge 
-            variant="secondary" 
-            className="cursor-pointer"
-            onClick={() => onFiltersChange({ city: undefined })}
-            data-testid="badge-selected-city"
-          >
-            {filters.city} ×
-          </Badge>
-        )}
-        {citySearch && cities.length > 0 && (
-          <div className="border border-border rounded-md max-h-32 overflow-y-auto bg-background">
-            {cities.slice(0, 5).map((city) => (
-              <button
-                key={city}
-                className="w-full text-left px-3 py-2 hover:bg-accent text-sm"
-                onClick={() => handleCitySelect(city)}
-                data-testid={`option-city-${city.toLowerCase().replace(' ', '-')}`}
+        <Select 
+          value={filters.city || "all"} 
+          onValueChange={handleCitySelect}
+          data-testid="select-city"
+        >
+          <SelectTrigger className="w-full">
+            <SelectValue placeholder="All cities" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All cities</SelectItem>
+            {allCities.map((city) => (
+              <SelectItem 
+                key={city} 
+                value={city}
+                data-testid={`option-city-${city.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 {city}
-              </button>
+              </SelectItem>
             ))}
-          </div>
-        )}
+          </SelectContent>
+        </Select>
       </div>
 
       {/* Category Filter */}
