@@ -5,15 +5,20 @@ import { Separator } from "@/components/ui/separator";
 import StatusPill from "./StatusPill";
 import { ExternalLink, Edit } from "lucide-react";
 import { format } from "date-fns";
-import type { Action } from "@shared/schema";
+import { updateActionStatus } from "@/lib/data";
+import { useToast } from "@/hooks/use-toast";
+import type { Action, Status } from "@shared/schema";
 
 interface ActionDrawerProps {
   action: Action | null;
   isOpen: boolean;
   onClose: () => void;
+  onStatusUpdated?: () => void;
 }
 
-export default function ActionDrawer({ action, isOpen, onClose }: ActionDrawerProps) {
+export default function ActionDrawer({ action, isOpen, onClose, onStatusUpdated }: ActionDrawerProps) {
+  const { toast } = useToast();
+  
   if (!action) return null;
 
   const formatDate = (dateString: string) => {
@@ -166,9 +171,30 @@ export default function ActionDrawer({ action, isOpen, onClose }: ActionDrawerPr
           <div className="pt-4 space-y-3">
             <Button 
               className="w-full" 
-              onClick={() => {
-                // TODO: Implement status update functionality
-                console.log('Update status for:', action.id);
+              onClick={async () => {
+                try {
+                  // For demo, cycle through statuses
+                  const statuses: Status[] = ["Not started", "Ready to start", "In progress", "Completed", "On hold"];
+                  const currentIndex = statuses.indexOf(action.status);
+                  const nextStatus = statuses[(currentIndex + 1) % statuses.length];
+                  
+                  await updateActionStatus(action.id, nextStatus);
+                  
+                  toast({
+                    title: "Status Updated",
+                    description: `Action status changed to: ${nextStatus}`,
+                  });
+                  
+                  if (onStatusUpdated) {
+                    onStatusUpdated();
+                  }
+                } catch (error) {
+                  toast({
+                    title: "Error",
+                    description: "Failed to update status. Please try again.",
+                    variant: "destructive",
+                  });
+                }
               }}
               data-testid="button-update-status"
             >

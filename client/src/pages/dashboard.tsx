@@ -24,7 +24,7 @@ export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const isMobile = useIsMobile();
   
-  const { data: actions = [], isLoading, error } = useQuery({
+  const { data: actions = [], isLoading, error, refetch } = useQuery({
     queryKey: ["/actions"],
     queryFn: loadActions,
   });
@@ -208,6 +208,10 @@ export default function Dashboard() {
         onClose={() => {
           setIsDrawerOpen(false);
           setSelectedAction(null);
+        }}
+        onStatusUpdated={() => {
+          // Refresh data when status is updated
+          refetch();
         }}
         data-testid="action-drawer"
       />

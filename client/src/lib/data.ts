@@ -3,7 +3,8 @@ import { actionSchema, type Action, type Filters, type KpiData, type Sector, typ
 
 export async function loadActions(): Promise<Action[]> {
   try {
-    const response = await fetch("/actions.json");
+    // Try to load from Google Sheets API first
+    const response = await fetch("/api/actions");
     if (!response.ok) {
       throw new Error(`Failed to load actions: ${response.statusText}`);
     }
@@ -11,10 +12,10 @@ export async function loadActions(): Promise<Action[]> {
     
     // Validate the data structure
     const actionsArray = z.array(actionSchema).parse(data);
-    return actionsArray;
+    return sortActions(actionsArray);
   } catch (error) {
     console.error("Error loading actions:", error);
-    throw new Error("Failed to load climate actions data. Please check if the data file exists.");
+    throw new Error("Failed to load climate actions data. Please check your Google Sheets configuration.");
   }
 }
 
@@ -182,9 +183,30 @@ export function exportData(actions: Action[], format: 'csv' | 'json' = 'csv'): v
   }
 }
 
-// Future integration hook for status updates
+// Update action status via API
+export async function updateActionStatus(actionId: string, newStatus: Status): Promise<void> {
+  try {
+    const response = await fetch('/api/update-status', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ actionId, newStatus }),
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Failed to update status: ${response.statusText}`);
+    }
+    
+    const result = await response.json();
+    console.log('Status updated successfully:', result.message);
+  } catch (error) {
+    console.error('Error updating status:', error);
+    throw new Error('Failed to update action status. Please try again.');
+  }
+}
+
+// Legacy function for backwards compatibility
 export function onStatusUpdate(actionId: string, newStatus: Status): void {
-  console.log(`Status update for ${actionId}: ${newStatus}`);
-  // TODO: Implement backend integration
-  // Future: POST /api/update-status
+  updateActionStatus(actionId, newStatus).catch(console.error);
 }
