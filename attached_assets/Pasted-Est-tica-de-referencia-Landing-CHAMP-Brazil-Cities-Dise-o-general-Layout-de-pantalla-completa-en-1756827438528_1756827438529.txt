@@ -1,0 +1,57 @@
+Estética de referencia (Landing CHAMP Brazil Cities)
+
+Diseño general
+
+Layout de pantalla completa en secciones horizontales (hero, luego bloques alternados).
+
+Split-screen en el hero: texto narrativo a la izquierda, imagen satelital a la derecha.
+
+Paleta de colores:
+
+Azul oscuro vibrante (#0d1b82 aprox.) para header, secciones destacadas y fondos de bloques.
+
+Blanco y gris muy claro como fondo neutro de secciones de texto.
+
+Acentos en celeste / azul más claro para diferenciar títulos secundarios.
+
+Tipografía moderna sans serif (ej. Inter, Source Sans, o similar), legible y con buen contraste.
+
+Hero / Encabezado
+
+Barra superior fija (sticky header) con logo a la izquierda y menú a la derecha (About, Collaborators, Methodology).
+
+Título grande en bold (ej. “Brazil is demonstrating bold climate leadership…”).
+
+Subtítulo descriptivo con varias líneas de texto, alineado a la izquierda, estilo “policy brief”.
+
+Imagen satelital de la Amazonía (o mapas) alineada a la derecha en el hero, full height.
+
+Bloques de contenido
+
+Bloque 1 (Project Overview): texto corrido, estilo informe, justificado a la izquierda, ocupa ancho moderado (máx. 700px).
+
+Bloque 2 (Purpose & Priorities): fondo azul vibrante, texto blanco en contraste.
+
+Encabezado pequeño en mayúsculas con color de acento (ej. “PURPOSE & PRIORITIES”).
+
+Título principal grande, bold, blanco.
+
+Lista de bullets blancos, simples, con interlineado generoso.
+
+Imagen vectorial/mapa esquemático de Brasil a la izquierda en outline.
+
+Jerarquía visual
+
+Uso marcado de títulos en mayúsculas pequeñas para secciones (ej. “PROJECT OVERVIEW”, “PURPOSE & PRIORITIES”).
+
+Títulos principales en bold grandes (H2/H1), con contraste fuerte.
+
+Párrafos en gris oscuro sobre fondo claro, line-height amplio para lectura cómoda.
+
+Estilo gráfico
+
+Fotografía satelital de alta resolución (Amazonas) como elemento heroico.
+
+Gráficos vectoriales simples (outline mapa de Brasil) como decorativos.
+
+Diseño editorial: se siente como un policy brief online más que como un landing de producto SaaS.

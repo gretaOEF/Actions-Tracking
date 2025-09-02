@@ -60,30 +60,25 @@ export default function KpiCards({ kpis, isLoading }: KpiCardsProps) {
   }
 
   return (
-    <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6" data-testid="kpi-cards">
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6" data-testid="kpi-cards">
       {cards.map((card) => {
         const Icon = card.icon;
         return (
-          <Card key={card.title} className="rounded-2xl p-6 shadow-sm border border-border">
-            <CardContent className="p-0">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-muted-foreground">{card.title}</p>
-                  <p className="text-3xl font-bold text-foreground" data-testid={`kpi-${card.title.toLowerCase().replace(' ', '-')}`}>
-                    {card.value}
-                  </p>
-                  {card.subtitle && (
-                    <p className="text-xs text-muted-foreground">{card.subtitle}</p>
-                  )}
-                </div>
-                <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${card.color}`}>
-                  <Icon className="w-6 h-6" />
-                </div>
-              </div>
-            </CardContent>
-          </Card>
+          <div key={card.title} className="text-center space-y-2">
+            <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10">
+              <p className="text-xs font-semibold tracking-wider uppercase text-white/70 mb-2">
+                {card.title}
+              </p>
+              <p className="text-4xl lg:text-5xl font-bold text-white mb-1" data-testid={`kpi-${card.title.toLowerCase().replace(' ', '-')}`}>
+                {card.value}
+              </p>
+              {card.subtitle && (
+                <p className="text-xs text-white/80">{card.subtitle}</p>
+              )}
+            </div>
+          </div>
         );
       })}
-    </section>
+    </div>
   );
 }

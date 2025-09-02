@@ -63,27 +63,32 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="h-full flex flex-col" data-testid="dashboard">
-      {/* Header */}
-      <header className="bg-card border-b border-border sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen" data-testid="dashboard">
+      {/* Institutional Header */}
+      <header className="blue-section sticky top-0 z-50 shadow-lg">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
+              <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
                 </svg>
               </div>
               <div>
-                <h1 className="text-xl font-semibold text-foreground">CityCatalyst</h1>
-                <p className="text-sm text-muted-foreground">High-Impact Actions</p>
+                <h1 className="text-xl font-bold text-white">CityCatalyst</h1>
+                <p className="text-sm text-white/80">Climate Action Dashboard</p>
               </div>
             </div>
+            <nav className="hidden md:flex items-center space-x-8">
+              <a href="#overview" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Overview</a>
+              <a href="#data" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Data</a>
+              <a href="#methodology" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Methodology</a>
+            </nav>
             <div className="flex items-center space-x-4">
               <Button 
                 variant="ghost" 
                 size="icon"
-                className="lg:hidden" 
+                className="lg:hidden text-white hover:bg-white/10" 
                 onClick={() => setIsMobileFiltersOpen(true)}
                 data-testid="button-toggle-mobile-filters"
               >
@@ -91,6 +96,7 @@ export default function Dashboard() {
               </Button>
               <Button 
                 onClick={handleExport}
+                variant="secondary"
                 data-testid="button-export"
               >
                 <Download className="w-4 h-4 mr-2" />
@@ -101,26 +107,42 @@ export default function Dashboard() {
         </div>
       </header>
 
-      <div className="flex-1 flex overflow-hidden">
-        {/* Desktop Sidebar */}
-        <aside className="hidden lg:flex lg:flex-shrink-0 w-80 bg-card border-r border-border">
-          <div className="w-full p-6 overflow-y-auto">
-            <div className="space-y-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-foreground">Filters</h2>
-                <Button variant="ghost" size="sm" onClick={clearFilters} data-testid="button-clear-filters">
-                  Clear All
-                </Button>
+      {/* Hero Section - Project Overview */}
+      <section className="neutral-section py-16 lg:py-24" id="overview">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div>
+                <p className="section-header">PROJECT OVERVIEW</p>
+                <h2 className="institutional-title mb-6">
+                  Scaling high-impact climate actions across global cities
+                </h2>
+                <p className="policy-text mb-6">
+                  This platform supports municipalities worldwide in developing and tracking 
+                  foundational climate diagnostics and priority actions. By aligning local action 
+                  with national climate commitments, CityCatalyst strengthens coordination between 
+                  subnational and national governments on climate action.
+                </p>
+                <p className="policy-text">
+                  At the heart of this initiative is the principle of multi-scale alignment: 
+                  ensuring that local climate action contributes to achieving national climate goals 
+                  while addressing the unique needs and capabilities of each city.
+                </p>
               </div>
-              <Filters 
-                filters={filters} 
-                onFiltersChange={updateFilters}
-                actions={actions}
-                data-testid="desktop-filters"
-              />
+              
+              {/* KPI Cards */}
+              <div className="space-y-4">
+                <p className="section-header">IMPACT METRICS</p>
+                <KpiCards kpis={kpis} isLoading={isLoading} data-testid="kpi-cards" />
+              </div>
+            </div>
+            
+            <div className="space-y-6">
+              <Charts kpis={kpis} isLoading={isLoading} data-testid="charts" />
             </div>
           </div>
-        </aside>
+        </div>
+      </section>
 
         {/* Mobile Filters Overlay */}
         {isMobileFiltersOpen && (
@@ -153,53 +175,83 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* Main Content */}
-        <main className="flex-1 overflow-y-auto">
-          <div className="max-w-7xl mx-auto p-6 space-y-8">
-            {/* KPI Cards */}
-            <KpiCards kpis={kpis} isLoading={isLoading} data-testid="kpi-cards" />
-
-            {/* Charts */}
-            <Charts kpis={kpis} isLoading={isLoading} data-testid="charts" />
-
-            {/* Data Section */}
-            <Card className="shadow-sm border border-border">
-              <div className="p-6 border-b border-border">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div>
-                    <h3 className="text-lg font-semibold text-foreground">High-Impact Actions</h3>
-                    <p className="text-sm text-muted-foreground" data-testid="text-filtered-count">
-                      Showing {filteredActions.length} of {actions.length} actions
-                    </p>
+      {/* Filters & Data Section - Blue Background */}
+      <section className="blue-section py-16" id="data">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="section-header text-white/80">DATA EXPLORATION</p>
+            <h2 className="institutional-title text-white mb-6">
+              Explore Climate Actions
+            </h2>
+            <p className="policy-text text-white/90 max-w-3xl mx-auto">
+              Filter and analyze high-impact climate actions across cities, sectors, and implementation stages. 
+              Each action represents a critical intervention for urban climate resilience.
+            </p>
+          </div>
+          
+          <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 space-y-8">
+            {/* Filters */}
+            <div className="space-y-6">
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div>
+                  <h3 className="text-lg font-semibold text-white mb-2">Filter Actions</h3>
+                  <p className="text-sm text-white/80" data-testid="text-filtered-count">
+                    Showing {filteredActions.length} of {actions.length} actions
+                  </p>
+                </div>
+                <div className="flex items-center space-x-4">
+                  <div className="relative">
+                    <Input
+                      type="text"
+                      placeholder="Search actions..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-64 pl-9 bg-white/10 border-white/20 text-white placeholder:text-white/60"
+                      data-testid="input-search"
+                    />
+                    <svg className="absolute left-3 top-2.5 w-4 h-4 text-white/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
                   </div>
-                  <div className="flex items-center space-x-3">
-                    <div className="relative">
-                      <Input
-                        type="text"
-                        placeholder="Search actions..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="w-64 pl-9"
-                        data-testid="input-search"
-                      />
-                      <svg className="absolute left-3 top-2.5 w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                      </svg>
-                    </div>
-                  </div>
+                  <Button variant="outline" size="sm" onClick={clearFilters} className="border-white/20 text-white hover:bg-white/10" data-testid="button-clear-filters">
+                    Clear All
+                  </Button>
                 </div>
               </div>
+              
+              <div className="lg:hidden">
+                <Button 
+                  onClick={() => setIsMobileFiltersOpen(true)}
+                  className="w-full bg-white/10 hover:bg-white/20 text-white border-white/20"
+                  data-testid="button-show-filters"
+                >
+                  <Filter className="w-4 h-4 mr-2" />
+                  Show Filters
+                </Button>
+              </div>
+              
+              <div className="hidden lg:block">
+                <Filters 
+                  filters={filters} 
+                  onFiltersChange={updateFilters}
+                  actions={actions}
+                  data-testid="desktop-filters"
+                />
+              </div>
+            </div>
 
+            {/* Data Table */}
+            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
               <DataTable 
                 actions={filteredActions}
                 onActionSelect={handleActionSelect}
                 isLoading={isLoading}
                 data-testid="data-table"
               />
-            </Card>
+            </div>
           </div>
-        </main>
-      </div>
+        </div>
+      </section>
 
       {/* Action Detail Drawer */}
       <ActionDrawer 
