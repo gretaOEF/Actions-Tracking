@@ -1,0 +1,130 @@
+[
+  {
+    "id": "BA-001",
+    "city": "Buenos Aires",
+    "country": "Argentina",
+    "actionName": "Implement Agroforestry Systems",
+    "category": "Mitigation",
+    "sector": "AFOLU",
+    "costTier": "Medium",
+    "investmentUSD": 1250000,
+    "status": "Ready to start",
+    "reductionPotentialPct": "80-100%",
+    "implementationTimeYears": "5-10 years",
+    "description": "Promote agroforestry by integrating trees into cultivation and pasture to increase biodiversity and carbon sequestration.",
+    "owner": "CityCatalyst Team",
+    "lastUpdated": "2025-08-20",
+    "status_history": [
+      {"date": "2025-06-01", "status": "Not started"},
+      {"date": "2025-08-20", "status": "Ready to start"}
+    ],
+    "tags": ["nature-based", "biodiversity"]
+  },
+  {
+    "id": "SP-001",
+    "city": "São Paulo",
+    "country": "Brazil",
+    "actionName": "Electric Bus Fleet Expansion",
+    "category": "Mitigation",
+    "sector": "Transportation",
+    "costTier": "High",
+    "investmentUSD": 5000000,
+    "status": "In progress",
+    "reductionPotentialPct": "60-80%",
+    "implementationTimeYears": "3-5 years",
+    "description": "Replace diesel buses with electric vehicles to reduce emissions and improve air quality in urban areas.",
+    "owner": "São Paulo Transport Authority",
+    "lastUpdated": "2025-09-01",
+    "status_history": [
+      {"date": "2025-01-15", "status": "Not started"},
+      {"date": "2025-05-10", "status": "Ready to start"},
+      {"date": "2025-07-01", "status": "In progress"}
+    ],
+    "tags": ["electric-mobility", "urban-transport"]
+  },
+  {
+    "id": "RJ-001",
+    "city": "Rio de Janeiro",
+    "country": "Brazil",
+    "actionName": "Coastal Protection Infrastructure",
+    "category": "Adaptation",
+    "sector": "Stationary Energy",
+    "costTier": "High",
+    "investmentUSD": 8000000,
+    "status": "On hold",
+    "reductionPotentialPct": "40-60%",
+    "implementationTimeYears": "7-10 years",
+    "description": "Build seawalls and drainage systems to protect coastal areas from rising sea levels and extreme weather events.",
+    "owner": "Rio Infrastructure Department",
+    "lastUpdated": "2025-06-15",
+    "status_history": [
+      {"date": "2025-03-01", "status": "Ready to start"},
+      {"date": "2025-06-15", "status": "On hold"}
+    ],
+    "tags": ["coastal-protection", "climate-resilience"]
+  },
+  {
+    "id": "MC-001",
+    "city": "Mexico City",
+    "country": "Mexico",
+    "actionName": "Smart Grid Implementation",
+    "category": "Mitigation",
+    "sector": "Stationary Energy",
+    "costTier": "Medium",
+    "investmentUSD": 3500000,
+    "status": "In progress",
+    "reductionPotentialPct": "70-90%",
+    "implementationTimeYears": "4-6 years",
+    "description": "Deploy smart grid technology to optimize energy distribution and integrate renewable energy sources.",
+    "owner": "Mexico City Energy Department",
+    "lastUpdated": "2025-08-15",
+    "status_history": [
+      {"date": "2025-02-01", "status": "Ready to start"},
+      {"date": "2025-04-15", "status": "In progress"}
+    ],
+    "tags": ["smart-grid", "renewable-energy"]
+  },
+  {
+    "id": "LM-001",
+    "city": "Lima",
+    "country": "Peru",
+    "actionName": "Waste-to-Energy Facility",
+    "category": "Mitigation",
+    "sector": "Waste",
+    "costTier": "High",
+    "investmentUSD": 6000000,
+    "status": "Completed",
+    "reductionPotentialPct": "85-95%",
+    "implementationTimeYears": "3-4 years",
+    "description": "Convert municipal solid waste into clean energy through advanced thermal treatment technologies.",
+    "owner": "Lima Waste Management Authority",
+    "lastUpdated": "2025-07-30",
+    "status_history": [
+      {"date": "2023-01-01", "status": "Not started"},
+      {"date": "2023-06-01", "status": "Ready to start"},
+      {"date": "2023-09-01", "status": "In progress"},
+      {"date": "2025-07-30", "status": "Completed"}
+    ],
+    "tags": ["waste-to-energy", "circular-economy"]
+  },
+  {
+    "id": "BO-001",
+    "city": "Bogotá",
+    "country": "Colombia",
+    "actionName": "Industrial Emission Controls",
+    "category": "Mitigation",
+    "sector": "IPPU",
+    "costTier": "Low",
+    "investmentUSD": 800000,
+    "status": "Not started",
+    "reductionPotentialPct": "50-70%",
+    "implementationTimeYears": "2-3 years",
+    "description": "Implement stricter emission standards and monitoring systems for industrial facilities to reduce air pollution.",
+    "owner": "Bogotá Environmental Authority",
+    "lastUpdated": "2025-05-20",
+    "status_history": [
+      {"date": "2025-05-20", "status": "Not started"}
+    ],
+    "tags": ["industrial-emissions", "air-quality"]
+  }
+]
