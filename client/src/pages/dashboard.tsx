@@ -117,18 +117,10 @@ export default function Dashboard() {
               <div>
                 <p className="section-header">PROJECT OVERVIEW</p>
                 <h2 className="institutional-title mb-6">
-                  Scaling high-impact climate actions across global cities
+                  Brazilian Cities Driving High-Impact Climate Action
                 </h2>
-                <p className="policy-text mb-6">
-                  This platform supports municipalities worldwide in developing and tracking 
-                  foundational climate diagnostics and priority actions. By aligning local action 
-                  with national climate commitments, CityCatalyst strengthens coordination between 
-                  subnational and national governments on climate action.
-                </p>
                 <p className="policy-text">
-                  At the heart of this initiative is the principle of multi-scale alignment: 
-                  ensuring that local climate action contributes to achieving national climate goals 
-                  while addressing the unique needs and capabilities of each city.
+                  Explore 100 prioritized climate actions from 50 Brazilian municipalities—advancing mitigation, adaptation, and resilience ahead of COP30 through data-driven planning and national alignment.
                 </p>
               </div>
               
