@@ -170,7 +170,7 @@ export default function Dashboard() {
         )}
 
       {/* Cities Map Section */}
-      <section className="py-16 bg-white" id="map">
+      <section className="pt-24 pb-16 bg-white" id="map">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="section-header">GLOBAL PRESENCE</p>

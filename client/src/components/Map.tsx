@@ -96,7 +96,7 @@ export default function Map({ actions }: MapProps) {
   const center: [number, number] = [-14.2350, -51.9253];
 
   return (
-    <div className="w-full h-96 rounded-lg overflow-hidden border border-gray-200" data-testid="climate-actions-map">
+    <div className="w-full h-96 rounded-lg overflow-hidden border border-gray-200 relative z-10" data-testid="climate-actions-map">
       <MapContainer
         center={center}
         zoom={4}
