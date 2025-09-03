@@ -25,12 +25,14 @@ interface CityLocation {
   actionsCount: number;
 }
 
-// Coordenadas aproximadas para las ciudades de prueba
+// Coordenadas exactas para las ciudades brasileñas del proyecto
 const cityCoordinates: Record<string, { lat: number; lng: number }> = {
-  "Serra Test": { lat: -20.1289, lng: -40.3078 }, // Serra, Espírito Santo
-  "Corunba Test": { lat: -19.0078, lng: -57.6544 }, // Corumbá, Mato Grosso do Sul
+  "Serra": { lat: -20.1289, lng: -40.3078 }, // Serra, Espírito Santo
+  "Corumba": { lat: -19.0078, lng: -57.6544 }, // Corumbá, Mato Grosso do Sul
+  "Caxias do sul": { lat: -29.1678, lng: -51.1794 }, // Caxias do Sul, Rio Grande do Sul
+  "Rio de Janeiro": { lat: -22.9068, lng: -43.1729 }, // Rio de Janeiro, RJ
+  // Adicionar más ciudades cuando se agreguen al sheet
   "São Paulo": { lat: -23.5505, lng: -46.6333 },
-  "Rio de Janeiro": { lat: -22.9068, lng: -43.1729 },
   "Belo Horizonte": { lat: -19.9167, lng: -43.9345 },
   "Salvador": { lat: -12.9714, lng: -38.5014 },
   "Fortaleza": { lat: -3.7319, lng: -38.5267 },
