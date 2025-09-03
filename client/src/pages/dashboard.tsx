@@ -83,8 +83,7 @@ export default function Dashboard() {
             <nav className="hidden md:flex items-center space-x-8">
               <a href="#overview" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Overview</a>
               <a href="#map" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Cities</a>
-              <a href="#data" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Data</a>
-              <a href="#methodology" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Methodology</a>
+              <a href="#data" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Actions</a>
             </nav>
             <div className="flex items-center space-x-4">
               <Button 
@@ -189,7 +188,7 @@ export default function Dashboard() {
         </div>
       </section>
 
-      {/* Filters & Data Section - Clean White Background */}
+      {/* Actions Section - Clean White Background */}
       <section className="neutral-section py-16 bg-gray-50" id="data">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
