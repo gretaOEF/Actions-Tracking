@@ -10,6 +10,7 @@ import Filters from "@/components/Filters";
 import DataTable from "@/components/DataTable";
 import Charts from "@/components/Charts";
 import ActionDrawer from "@/components/ActionDrawer";
+import Map from "@/components/Map";
 import { loadActions, filterActions, calculateKpis, exportData } from "@/lib/data";
 import { useFilters } from "@/hooks/use-filters";
 import { useUrlState } from "@/hooks/use-url-state";
@@ -81,6 +82,7 @@ export default function Dashboard() {
             </div>
             <nav className="hidden md:flex items-center space-x-8">
               <a href="#overview" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Overview</a>
+              <a href="#map" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Cities</a>
               <a href="#data" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Data</a>
               <a href="#methodology" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Methodology</a>
             </nav>
@@ -174,6 +176,26 @@ export default function Dashboard() {
             </div>
           </div>
         )}
+
+      {/* Cities Map Section */}
+      <section className="py-16 bg-white" id="map">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <p className="section-header">GLOBAL PRESENCE</p>
+            <h2 className="institutional-title text-gray-900 mb-6">
+              Cities Participating in Climate Action
+            </h2>
+            <p className="policy-text max-w-3xl mx-auto text-gray-700">
+              Interactive map showing the geographic distribution of cities implementing 
+              high-impact climate interventions across regions.
+            </p>
+          </div>
+          
+          <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
+            <Map actions={actions} />
+          </div>
+        </div>
+      </section>
 
       {/* Filters & Data Section - Clean White Background */}
       <section className="neutral-section py-16 bg-gray-50" id="data">
