@@ -1,52 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Institutional Blue Theme - CHAMP Brazil Style */
+  /* C40 & GCoM Joint Program Brand Colors */
   --background: hsl(0, 0%, 98%);
-  --foreground: hsl(222.2, 84%, 4.9%);
+  --foreground: hsl(0, 0%, 0%); /* Black from brand guide */
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(222.2, 84%, 4.9%);
+  --card-foreground: hsl(0, 0%, 0%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(222.2, 84%, 4.9%);
+  --popover-foreground: hsl(0, 0%, 0%);
   
-  /* Primary: Deep institutional blue */
-  --primary: hsl(230, 91%, 27%);
+  /* Primary: C40/GCoM Blue #1C357E */
+  --primary: hsl(222, 63%, 29%);
   --primary-foreground: hsl(0, 0%, 100%);
   
-  /* Secondary: Light blue accent */
-  --secondary: hsl(214, 95%, 93%);
-  --secondary-foreground: hsl(230, 91%, 27%);
+  /* Secondary: Light gray from accent colors */
+  --secondary: hsl(208, 18%, 88%); /* #D4DCDF */
+  --secondary-foreground: hsl(0, 0%, 0%);
   
-  --muted: hsl(210, 40%, 96%);
-  --muted-foreground: hsl(215.4, 16.3%, 46.9%);
-  --accent: hsl(214, 95%, 93%);
-  --accent-foreground: hsl(230, 91%, 27%);
-  --destructive: hsl(0, 84.2%, 60.2%);
-  --destructive-foreground: hsl(210, 40%, 98%);
-  --border: hsl(214.3, 31.8%, 91.4%);
-  --input: hsl(214.3, 31.8%, 91.4%);
-  --ring: hsl(230, 91%, 27%);
+  /* Muted grays from brand accent colors */
+  --muted: hsl(208, 18%, 88%); /* #D4DCDF */
+  --muted-foreground: hsl(207, 6%, 51%); /* #4C5659 */
+  --accent: hsl(208, 18%, 88%);
+  --accent-foreground: hsl(0, 0%, 0%);
+  --destructive: hsl(357, 100%, 68%); /* #FF3D4E from brand guide */
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(208, 18%, 88%);
+  --input: hsl(208, 18%, 88%);
+  --ring: hsl(222, 63%, 29%);
   
-  /* Chart colors - institutional palette */
-  --chart-1: hsl(230, 91%, 27%);
-  --chart-2: hsl(214, 95%, 68%);
-  --chart-3: hsl(216, 92%, 60%);
-  --chart-4: hsl(210, 98%, 78%);
-  --chart-5: hsl(212, 97%, 87%);
+  /* Chart colors using brand primaries */
+  --chart-1: hsl(222, 63%, 29%); /* Primary blue */
+  --chart-2: hsl(133, 100%, 40%); /* #00C629 Green */
+  --chart-3: hsl(196, 84%, 61%); /* #23BCED Light blue */
+  --chart-4: hsl(307, 52%, 59%); /* #C337B3 Purple */
+  --chart-5: hsl(50, 96%, 50%); /* #FAD307 Yellow */
   
   --sidebar: hsl(0, 0%, 100%);
-  --sidebar-foreground: hsl(222.2, 84%, 4.9%);
-  --sidebar-primary: hsl(230, 91%, 27%);
-  --sidebar-primary-foreground: hsl(210, 40%, 98%);
-  --sidebar-accent: hsl(210, 40%, 96%);
-  --sidebar-accent-foreground: hsl(222.2, 84%, 4.9%);
-  --sidebar-border: hsl(214.3, 31.8%, 91.4%);
-  --sidebar-ring: hsl(230, 91%, 27%);
+  --sidebar-foreground: hsl(0, 0%, 0%);
+  --sidebar-primary: hsl(222, 63%, 29%);
+  --sidebar-primary-foreground: hsl(0, 0%, 100%);
+  --sidebar-accent: hsl(208, 18%, 88%);
+  --sidebar-accent-foreground: hsl(0, 0%, 0%);
+  --sidebar-border: hsl(208, 18%, 88%);
+  --sidebar-ring: hsl(222, 63%, 29%);
   
-  /* Typography - Editorial style */
-  --font-sans: "Inter", "Source Sans Pro", system-ui, sans-serif;
+  /* Typography - Figtree from brand guide */
+  --font-sans: "Figtree", system-ui, sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
   --radius: 0.5rem;
@@ -97,17 +100,21 @@
     -webkit-line-clamp: 2;
   }
   
-  /* Institutional design utilities */
+  /* C40/GCoM Brand design utilities */
   .section-header {
-    @apply text-xs font-semibold tracking-wider uppercase text-muted-foreground mb-4;
+    @apply text-xs font-extrabold tracking-wider uppercase text-muted-foreground mb-4;
   }
   
   .institutional-title {
-    @apply text-3xl md:text-4xl lg:text-5xl font-bold leading-tight;
+    @apply text-3xl md:text-4xl lg:text-5xl font-extrabold leading-tight;
   }
   
   .policy-text {
-    @apply text-lg leading-relaxed text-gray-600;
+    @apply text-lg leading-relaxed font-normal;
+  }
+  
+  .brand-emphasis {
+    @apply font-extrabold;
   }
   
   .blue-section {

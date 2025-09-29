@@ -67,7 +67,7 @@ export default function Filters({ filters, onFiltersChange, actions }: FiltersPr
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4" data-testid="filters">
       {/* City Filter */}
       <div className="space-y-2">
-        <Label className="text-xs font-semibold tracking-wider uppercase text-gray-600">
+        <Label className="text-xs font-extrabold tracking-wider uppercase text-muted-foreground">
           City
         </Label>
         <Select 
@@ -95,7 +95,7 @@ export default function Filters({ filters, onFiltersChange, actions }: FiltersPr
 
       {/* Category Filter */}
       <div className="space-y-3">
-        <Label className="text-xs font-semibold tracking-wider uppercase text-gray-600">Category</Label>
+        <Label className="text-xs font-extrabold tracking-wider uppercase text-muted-foreground">Category</Label>
         <div className="flex flex-wrap gap-2">
           {categories.map((category) => {
             const isSelected = filters.categories?.includes(category);
@@ -117,7 +117,7 @@ export default function Filters({ filters, onFiltersChange, actions }: FiltersPr
 
       {/* Sector Filter */}
       <div className="space-y-3">
-        <Label className="text-xs font-semibold tracking-wider uppercase text-gray-600">Sector</Label>
+        <Label className="text-xs font-extrabold tracking-wider uppercase text-muted-foreground">Sector</Label>
         <div className="space-y-2">
           {sectors.map((sector) => (
             <div key={sector} className="flex items-center space-x-2">
@@ -137,7 +137,7 @@ export default function Filters({ filters, onFiltersChange, actions }: FiltersPr
 
       {/* Cost Filter */}
       <div className="space-y-3">
-        <Label className="text-xs font-semibold tracking-wider uppercase text-gray-600">Cost</Label>
+        <Label className="text-xs font-extrabold tracking-wider uppercase text-muted-foreground">Cost</Label>
         <div className="space-y-2">
           {costTiers.map((cost) => (
             <div key={cost} className="flex items-center space-x-2">
@@ -157,7 +157,7 @@ export default function Filters({ filters, onFiltersChange, actions }: FiltersPr
 
       {/* Status Filter */}
       <div className="space-y-3">
-        <Label className="text-xs font-semibold tracking-wider uppercase text-gray-600">Status</Label>
+        <Label className="text-xs font-extrabold tracking-wider uppercase text-muted-foreground">Status</Label>
         <div className="space-y-2">
           {statuses.map((status) => (
             <div key={status} className="flex items-center space-x-2">

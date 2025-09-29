@@ -54,8 +54,8 @@ export default function Dashboard() {
     return (
       <div className="min-h-screen w-full flex items-center justify-center bg-background">
         <Card className="p-6 max-w-md">
-          <h1 className="text-lg font-semibold text-destructive mb-2">Error Loading Data</h1>
-          <p className="text-sm text-muted-foreground">
+          <h1 className="text-lg font-extrabold text-foreground mb-2">❌ Error Loading Data</h1>
+          <p className="text-sm font-normal text-muted-foreground">
             Failed to load climate actions data. Please try refreshing the page.
           </p>
         </Card>
@@ -70,26 +70,26 @@ export default function Dashboard() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center">
-                <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+              <div className="w-10 h-10 bg-primary-foreground/10 rounded-lg flex items-center justify-center">
+                <svg className="w-6 h-6 text-primary-foreground" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M10 2L3 7v11h4v-6h6v6h4V7l-7-5z"/>
                 </svg>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-white">CityCatalyst</h1>
-                <p className="text-sm text-white/80">Climate Action Dashboard</p>
+                <h1 className="text-xl font-extrabold text-primary-foreground">CityCatalyst</h1>
+                <p className="text-sm font-normal text-primary-foreground/80">Climate Action Dashboard</p>
               </div>
             </div>
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#overview" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Overview</a>
-              <a href="#map" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Cities</a>
-              <a href="#data" className="text-sm font-medium text-white/90 hover:text-white transition-colors">Actions</a>
+              <a href="#overview" className="text-sm font-normal text-primary-foreground/90 hover:text-primary-foreground transition-colors">Overview</a>
+              <a href="#map" className="text-sm font-normal text-primary-foreground/90 hover:text-primary-foreground transition-colors">Cities</a>
+              <a href="#data" className="text-sm font-normal text-primary-foreground/90 hover:text-primary-foreground transition-colors">Actions</a>
             </nav>
             <div className="flex items-center space-x-4">
               <Button 
                 variant="ghost" 
                 size="icon"
-                className="lg:hidden text-white hover:bg-white/10" 
+                className="lg:hidden text-primary-foreground hover:bg-primary-foreground/10" 
                 onClick={() => setIsMobileFiltersOpen(true)}
                 data-testid="button-toggle-mobile-filters"
               >
@@ -147,7 +147,7 @@ export default function Dashboard() {
             <div className="fixed left-0 top-0 h-full w-80 bg-card shadow-xl">
               <div className="p-6 overflow-y-auto h-full">
                 <div className="flex items-center justify-between mb-6">
-                  <h2 className="text-lg font-semibold text-foreground">Filters</h2>
+                  <h2 className="text-lg font-extrabold text-foreground">Filters</h2>
                   <Button 
                     variant="ghost" 
                     size="icon"
@@ -169,31 +169,31 @@ export default function Dashboard() {
         )}
 
       {/* Cities Map Section */}
-      <section className="pt-24 pb-16 bg-white" id="map">
+      <section className="pt-24 pb-16 bg-background" id="map">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="section-header">GLOBAL PRESENCE</p>
-            <h2 className="institutional-title text-gray-900 mb-6">
+            <h2 className="institutional-title text-foreground mb-6">
               Cities Participating in Climate Action
             </h2>
-            <p className="policy-text max-w-3xl mx-auto text-gray-700">
+            <p className="policy-text max-w-3xl mx-auto text-muted-foreground">
               Interactive map showing the geographic distribution of cities implementing 
               high-impact climate interventions across regions.
             </p>
           </div>
           
-          <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-200">
+          <div className="bg-card rounded-xl p-8 shadow-sm border border-border">
             <Map actions={actions} />
           </div>
         </div>
       </section>
 
       {/* Actions Section - Clean White Background */}
-      <section className="neutral-section py-16 bg-gray-50" id="data">
+      <section className="neutral-section py-16 bg-secondary/30" id="data">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="section-header">DATA EXPLORATION</p>
-            <h2 className="institutional-title text-gray-900 mb-6">
+            <h2 className="institutional-title text-foreground mb-6">
               Explore Climate Actions
             </h2>
             <p className="policy-text max-w-3xl mx-auto">
@@ -202,13 +202,13 @@ export default function Dashboard() {
             </p>
           </div>
           
-          <div className="bg-white rounded-xl p-8 shadow-sm border border-gray-200 space-y-8">
+          <div className="bg-card rounded-xl p-8 shadow-sm border border-border space-y-8">
             {/* Filters */}
             <div className="space-y-6">
               <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Filter Actions</h3>
-                  <p className="text-sm text-gray-600" data-testid="text-filtered-count">
+                  <h3 className="text-lg font-extrabold text-foreground mb-2">Filter Actions</h3>
+                  <p className="text-sm font-normal text-muted-foreground" data-testid="text-filtered-count">
                     Showing {filteredActions.length} of {actions.length} actions
                   </p>
                 </div>
@@ -222,7 +222,7 @@ export default function Dashboard() {
                       className="w-64 pl-9"
                       data-testid="input-search"
                     />
-                    <svg className="absolute left-3 top-2.5 w-4 h-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="absolute left-3 top-2.5 w-4 h-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                     </svg>
                   </div>
@@ -255,7 +255,7 @@ export default function Dashboard() {
             </div>
 
             {/* Data Table */}
-            <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div className="bg-card rounded-lg shadow-sm overflow-hidden">
               <DataTable 
                 actions={filteredActions}
                 onActionSelect={handleActionSelect}

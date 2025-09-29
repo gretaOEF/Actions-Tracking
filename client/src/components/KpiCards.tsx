@@ -27,14 +27,14 @@ export default function KpiCards({ kpis, isLoading }: KpiCardsProps) {
       value: kpis.mitigationActions,
       subtitle: `${Math.round((kpis.mitigationActions / kpis.totalActions) * 100)}% of total`,
       icon: TrendingUp,
-      color: "bg-green-100 text-green-600",
+      color: "bg-chart-2/10 text-chart-2", // Uses brand green #00C629
     },
     {
       title: "Adaptation",
       value: kpis.adaptationActions, 
       subtitle: `${Math.round((kpis.adaptationActions / kpis.totalActions) * 100)}% of total`,
       icon: Shield,
-      color: "bg-blue-100 text-blue-600",
+      color: "bg-chart-3/10 text-chart-3", // Uses brand light blue #23BCED
     },
   ];
 
@@ -65,15 +65,15 @@ export default function KpiCards({ kpis, isLoading }: KpiCardsProps) {
         const Icon = card.icon;
         return (
           <div key={card.title} className="text-center space-y-2">
-            <div className="bg-white/5 backdrop-blur-sm rounded-lg p-6 border border-white/10">
-              <p className="text-xs font-semibold tracking-wider uppercase text-gray-600 mb-2">
+            <div className="bg-card/5 backdrop-blur-sm rounded-lg p-6 border border-border/10">
+              <p className="text-xs font-extrabold tracking-wider uppercase text-muted-foreground mb-2">
                 {card.title}
               </p>
-              <p className="text-4xl lg:text-5xl font-bold text-gray-900 mb-1" data-testid={`kpi-${card.title.toLowerCase().replace(' ', '-')}`}>
+              <p className="text-4xl lg:text-5xl font-extrabold text-foreground mb-1" data-testid={`kpi-${card.title.toLowerCase().replace(' ', '-')}`}>
                 {card.value}
               </p>
               {card.subtitle && (
-                <p className="text-xs text-gray-600">{card.subtitle}</p>
+                <p className="text-xs font-normal text-muted-foreground">{card.subtitle}</p>
               )}
             </div>
           </div>
